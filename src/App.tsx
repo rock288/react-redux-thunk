@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Login, Dashboard, SignUp } from './views'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Login, Dashboard, SignUp } from './views';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

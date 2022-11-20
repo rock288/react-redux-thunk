@@ -1,4 +1,4 @@
-import { FETCH_GITHUB_DATA, Actions } from './action'
+import { FETCH_GITHUB_DATA, Actions } from './action';
 
 export default function githubReducer(
   state = [],
@@ -6,8 +6,8 @@ export default function githubReducer(
 ) {
   switch (action.type) {
     case FETCH_GITHUB_DATA:
-      return action.data
+      return action.data;
     default:
-      return state
+      return state;
   }
 }

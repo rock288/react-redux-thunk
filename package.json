@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src/**/*.{ts,tsx}",
-    "format": "prettier --write \"**/*.+(ts|tsx|json|css)\""
+    "format": "prettier --write \"**/*.+(ts|tsx|json|css)\"",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +61,11 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "prettier": "^2.7.1"
+  },
+  "lint-staged": {
+    "*.{src/**/*{ts,tsx}}": "eslint --cache --fix"
   }
 }
