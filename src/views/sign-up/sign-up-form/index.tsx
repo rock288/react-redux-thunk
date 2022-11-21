@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Checkbox, Button, Link } from '../../../components';
+import { TextField, Checkbox, Button, Link, SocialMedia } from '../../../components';
 import './index.scss';
 
 const values = {
@@ -91,6 +91,8 @@ function SignUpForm() {
         <span className="px-2">or</span>
         <hr className="flex-fill" />
       </div>
+
+      <SocialMedia />
     </section>
   );
 }

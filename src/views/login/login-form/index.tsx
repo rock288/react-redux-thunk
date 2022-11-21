@@ -13,7 +13,7 @@ const messages = {
   password: '',
 };
 
-function Index() {
+function LoginForm() {
   const [data, setData] = useState(values);
   const [errors] = useState(messages);
 
@@ -70,4 +70,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default LoginForm;
