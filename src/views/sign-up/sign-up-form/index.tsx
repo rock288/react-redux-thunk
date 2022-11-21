@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { TextField, Checkbox, Button, Link, SocialMedia } from '../../../components';
+import { TextField, Checkbox, Button, Link } from '../../../components';
 import './index.scss';
 
 const values = {
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
   isRemember: false,
 };
 
 const messages = {
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
 };
 
-function Index() {
+function SignUpForm() {
   const [data, setData] = useState(values);
   const [errors] = useState(messages);
 
@@ -24,10 +28,26 @@ function Index() {
 
   return (
     <section className="form-login">
-      <h4 className="title pb-4">Welcome to Entrance Test Interview! 👋🏻</h4>
-      <p className="fw-bold pb-4">
-        Please sign-in to your account and start the adventure
-      </p>
+      <h4 className="title pb-4">Adventure starts here</h4>
+      <p className="fw-bold pb-4">Make your app management easy and fun!</p>
+      <TextField
+        htmlFor={'first-name'}
+        label={'Firstname'}
+        value={data.firstName}
+        message={errors.firstName}
+        name={'firstName'}
+        onChange={onChange}
+        isRequired
+      />
+      <TextField
+        htmlFor={'last-name'}
+        label={'Lastname'}
+        value={data.lastName}
+        message={errors.lastName}
+        name={'lastName'}
+        onChange={onChange}
+        isRequired
+      />
       <TextField
         htmlFor={'login-name'}
         label={'Email'}
@@ -47,7 +67,14 @@ function Index() {
         onChange={onChange}
         isRequired
       />
-      <Checkbox label="Remember me" value={data.isRemember} />
+      <Checkbox
+        label={
+          <p>
+            i agree to <Link to="#">privacy policy & terms</Link>
+          </p>
+        }
+        value={data.isRemember}
+      />
       <Button
         onClick={() => {
           console.log('zz');
@@ -56,7 +83,7 @@ function Index() {
         isFullWidth
       />
       <p className="mt-4 text-center">
-        New on our platform? <Link to={'/sign-up'}>Create an account</Link>
+        Already have an account? <Link to={'/login'}>Sign in instead</Link>
       </p>
 
       <div className="d-flex flex-row align-items-center">
@@ -64,10 +91,8 @@ function Index() {
         <span className="px-2">or</span>
         <hr className="flex-fill" />
       </div>
-
-      <SocialMedia />
     </section>
   );
 }
 
-export default Index;
+export default SignUpForm;

@@ -1,8 +1,8 @@
-import facebookIcon from '../../../assets/images/facebook.svg';
-import githubIcon from '../../../assets/images/github.svg';
-import twitterIcon from '../../../assets/images/twitter.svg';
-import mailIcon from '../../../assets/images/mail.svg';
-import { Image } from '../../../components';
+import facebookIcon from '../../assets/images/facebook.svg';
+import githubIcon from '../../assets/images/github.svg';
+import twitterIcon from '../../assets/images/twitter.svg';
+import mailIcon from '../../assets/images/mail.svg';
+import { Image } from '..';
 import './index.scss';
 
 function SocialMedia() {

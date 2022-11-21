@@ -4,3 +4,6 @@ export { default as TextField } from './text-field';
 export { default as Checkbox } from './checkbox';
 export { default as Button } from './button';
 export { default as Image } from './image';
+export { default as Banner } from './banner';
+export { default as SocialMedia } from './social-media';
+export { default as Link } from './link';

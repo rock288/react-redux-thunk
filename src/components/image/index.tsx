@@ -3,16 +3,19 @@ import './index.scss';
 interface Props {
   src: string;
   alt: string;
+  imgClass?: string;
   isIcon?: boolean;
   isBanner?: boolean;
 }
 
 function Image(props: Props) {
-  const { isIcon, isBanner, ...rest } = props;
+  const { isIcon, isBanner, imgClass, ...rest } = props;
   return (
     <img
       {...rest}
-      className={`${isBanner ? 'img-banner' : ''} ${isIcon ? 'img-icon' : ''}`}
+      className={`${imgClass ?? ''} ${isBanner ? 'img-banner' : ''} ${
+        isIcon ? 'img-icon' : ''
+      }`}
     />
   );
 }

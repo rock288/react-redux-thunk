@@ -1,13 +1,14 @@
 import { Row, Col, Container } from 'reactstrap';
-import Banner from './banner';
+import { Banner } from '../../components';
 import LoginForm from './login-form';
+import loginImage from '../../assets/images/login.svg';
 
-function DashBoard() {
+function Login() {
   return (
     <Container fluid>
       <Row className="row min-vh-100">
         <Col className="d-none d-md-block banner-section" xs="0" md="6" lg="8">
-          <Banner />
+          <Banner src={loginImage} alt="" />
         </Col>
         <Col
           xs="12"
@@ -22,4 +23,4 @@ function DashBoard() {
   );
 }
 
-export default DashBoard;
+export default Login;

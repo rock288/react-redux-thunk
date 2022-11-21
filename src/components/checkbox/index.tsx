@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 interface Props {
-  label: string;
+  label: string | ReactNode;
   value: boolean;
 }
 
