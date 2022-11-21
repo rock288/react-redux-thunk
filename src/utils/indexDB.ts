@@ -1,6 +1,6 @@
 // use local Storage
 
-const set = (key: string, value: any) => {
+const set = (key: string, value: string) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 

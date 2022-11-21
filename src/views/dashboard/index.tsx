@@ -1,8 +1,16 @@
 import { Header, Footer } from '../../components';
 import { Row, Col } from 'reactstrap';
 import Body from './body';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function DashBoard() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/login');
+  }, []);
+
   return (
     <>
       <Row>

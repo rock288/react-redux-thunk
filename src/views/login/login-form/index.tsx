@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { login } from '../../../api/auth';
 import { TextField, Checkbox, Button, Link, SocialMedia } from '../../../components';
 import './index.scss';
 
@@ -20,6 +21,16 @@ function LoginForm() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setData({ ...data, [name]: value });
+  };
+
+  const onLogin = async () => {
+    console.log('Login');
+    const res = await login({
+      email: 'test1@gmail.com',
+      password: '12345678',
+    });
+
+    console.log({ res });
   };
 
   return (
@@ -48,13 +59,7 @@ function LoginForm() {
         isRequired
       />
       <Checkbox label="Remember me" value={data.isRemember} />
-      <Button
-        onClick={() => {
-          console.log('zz');
-        }}
-        text="Login"
-        isFullWidth
-      />
+      <Button onClick={onLogin} text="Login" isFullWidth />
       <p className="mt-4 text-center">
         New on our platform? <Link to={'/sign-up'}>Create an account</Link>
       </p>

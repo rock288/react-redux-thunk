@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BASE_URL } from '../config';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import indexDB, { getToken, getRefreshToken, getExpiresToken } from './indexDB';
+import { getToken, getExpiresToken } from './indexDB';
+import history from './history';
 
 const service = axios.create({
-  baseURL: decodeURIComponent(BASE_URL || 'http://localhost:9000'), // url = base url + request url
+  baseURL: decodeURIComponent(BASE_URL || ''),
 });
 
 // Request interceptors
@@ -16,10 +18,7 @@ service.interceptors.request.use(
         const expires = getExpiresToken();
         const timeExpire = new Date(expires).getTime();
         if (timeExpire < nowInSecs) {
-          // const refreshToken = getRefreshToken();
-          // const tokens = (await refreshTokens({ refreshToken })) as any;
-          // indexDB.set('tokens', tokens);
-          // token = tokens.access.token;
+          history.replace('/login'); // <-- navigate
         }
         config.headers['Content-type'] = 'application/json';
         config.headers.Authorization = `Bearer ${token}`;
@@ -43,8 +42,6 @@ service.interceptors.response.use(
     if (!error?.response) {
       return;
     }
-
-    // console.log({ error: error.response.data.message });
   }
 );
 
