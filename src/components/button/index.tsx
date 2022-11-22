@@ -7,7 +7,7 @@ interface Props {
   isFullWidth?: boolean;
 }
 
-function Index(props: Props) {
+function CustomButton(props: Props) {
   const { onClick, text, isFullWidth } = props;
 
   return (
@@ -21,4 +21,4 @@ function Index(props: Props) {
   );
 }
 
-export default Index;
+export default CustomButton;

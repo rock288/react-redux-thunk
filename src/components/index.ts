@@ -8,3 +8,4 @@ export { default as Banner } from './banner';
 export { default as SocialMedia } from './social-media';
 export { default as Link } from './link';
 export { default as CustomRouter } from './custom-router';
+export { default as Layout } from './layout';
