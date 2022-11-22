@@ -1,5 +1,5 @@
-import { Header, Footer } from '../../components';
-import { Row, Col } from 'reactstrap';
+import { Footer } from '../../components';
+import { Row, Col, Container } from 'reactstrap';
 import Body from './body';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { getItem } from '../../utils/indexDB';
 import { setUser } from '../../store/user/userReducer';
 import { useDispatch } from 'react-redux';
+import Header from './header';
 
 function DashBoard() {
   const navigate = useNavigate();
@@ -24,23 +25,23 @@ function DashBoard() {
     }
   }, []);
   return (
-    <>
+    <Container fluid>
       <Row>
-        <Col className="bg-light border">
+        <Col className="">
           <Header user={user} />
         </Col>
       </Row>
-      <Row>
-        <Col className="bg-light border">
+      <Row className="bg-gray">
+        <Col className="">
           <Body />
         </Col>
       </Row>
-      <Row>
-        <Col className="bg-light border">
+      <Row className="bg-gray">
+        <Col className="">
           <Footer />
         </Col>
       </Row>
-    </>
+    </Container>
   );
 }
 

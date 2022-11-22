@@ -11,7 +11,7 @@ function Layout({ imgBanner, children }: Props) {
   return (
     <Container fluid>
       <Row className="row min-vh-100">
-        <Col className="d-none d-md-block banner-section" xs="0" md="6" lg="8">
+        <Col className="d-none d-md-block bg-gray" xs="0" md="6" lg="8">
           <Banner src={imgBanner} alt="" />
         </Col>
         <Col

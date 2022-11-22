@@ -1,14 +1,6 @@
-import {
-  Navbar,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledPopover,
-  PopoverHeader,
-  PopoverBody,
-  Button,
-} from 'reactstrap';
-import { User } from '../../types/user';
+import { Nav, Navbar, PopoverBody, UncontrolledPopover } from 'reactstrap';
+import { User } from '../../../types/user';
+import './index.scss';
 
 interface Props {
   user: User;
@@ -17,7 +9,7 @@ interface Props {
 function Header(props: Props) {
   const { user } = props;
   return (
-    <Navbar expand="md" light>
+    <Navbar className="header-top" expand="md" light>
       <Nav className="ms-auto" navbar>
         <button id="popover1" type="button">
           {user.firstName} {user.lastName}
