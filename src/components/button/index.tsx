@@ -1,4 +1,4 @@
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import './index.scss';
 
 interface Props {
@@ -12,14 +12,14 @@ function CustomButton(props: Props) {
   const { onClick, text, isFullWidth, disabled } = props;
 
   return (
-    <Button
+    <button
       type="button"
-      className={`btn text-center btn-custom mt-4 ${isFullWidth ? 'w-100' : ''}`}
+      className={`btn-custom btn text-center mt-4 ${isFullWidth ? 'w-100' : ''}`}
       onClick={onClick}
       disabled={!!disabled}
     >
       {text}
-    </Button>
+    </button>
   );
 }
 

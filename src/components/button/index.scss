@@ -1,3 +1,11 @@
 .btn-custom {
-  background-color: var(--cs-bg-button);
+  background-color: var(--cs-bg-button) !important;
+  color: white !important;
+
+  &:hover {
+    background-color: var(--cs-bg-button-dark);
+  }
+  &:focus {
+    background-color: var(--cs-bg-button-dark);
+  }
 }

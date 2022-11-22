@@ -1,9 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
-import { Login, Dashboard, SignUp } from './views';
 import { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 import { CustomRouter } from './components';
 import customHistory from './utils/history';
+import { Dashboard, Login, SignUp } from './views';
 
 function App() {
   return (

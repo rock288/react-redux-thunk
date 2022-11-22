@@ -63,10 +63,9 @@ function LoginForm() {
     if (isValid()) {
       try {
         const user: User = (await login({
-          email: data.email,
-          password: data.password,
+          email: data.email.trim(),
+          password: data.password.trim(),
         })) as any;
-        console.log(data);
         if (data.isRemember) {
           setItem('user', user);
         }

@@ -1,5 +1,12 @@
+import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { signUp } from '../../../api/auth';
 import { TextField, Checkbox, Button, Link, SocialMedia } from '../../../components';
+import { setUser } from '../../../store/user/userReducer';
+import { User } from '../../../types/user';
+import { checkFormSignUp } from '../../../utils/validation';
 import './index.scss';
 
 const values = {
@@ -7,7 +14,7 @@ const values = {
   lastName: '',
   email: '',
   password: '',
-  isRemember: false,
+  isAcceptPolicy: false,
 };
 
 const messages = {
@@ -19,7 +26,10 @@ const messages = {
 
 function SignUpForm() {
   const [data, setData] = useState(values);
-  const [errors] = useState(messages);
+  const [errors, setErrors] = useState(messages);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -28,7 +38,53 @@ function SignUpForm() {
 
   const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
-    setData({ ...data, isRemember: checked });
+    setData({ ...data, isAcceptPolicy: checked });
+  };
+
+  const isEmptyErrors = ({
+    email,
+    password,
+    firstName,
+    lastName,
+  }: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  }) => {
+    if (
+      isEmpty(email) &&
+      isEmpty(password) &&
+      isEmpty(firstName) &&
+      isEmpty(lastName)
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const isValid = () => {
+    const messages = checkFormSignUp(data);
+    setErrors(messages);
+    return isEmptyErrors(messages);
+  };
+
+  const onSignUp = async () => {
+    if (isValid()) {
+      try {
+        const user: User = (await signUp({
+          firstName: data.firstName.trim(),
+          lastName: data.lastName.trim(),
+          email: data.email.trim(),
+          password: data.password.trim(),
+        })) as any;
+        dispatch(setUser(user));
+        navigate('/');
+      } catch (_) {
+        alert('sign-up failed');
+      }
+    }
   };
 
   return (
@@ -79,15 +135,14 @@ function SignUpForm() {
             i agree to <Link to="#">privacy policy & terms</Link>
           </p>
         }
-        value={data.isRemember}
+        value={data.isAcceptPolicy}
         onChange={onChangeCheckbox}
       />
       <Button
-        onClick={() => {
-          console.log('zz');
-        }}
-        text="Login"
+        onClick={onSignUp}
+        text="Sign Up"
         isFullWidth
+        disabled={!data.isAcceptPolicy}
       />
       <p className="mt-4 text-center">
         Already have an account? <Link to={'/login'}>Sign in instead</Link>

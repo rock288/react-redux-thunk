@@ -1,34 +1,31 @@
-import React from 'react';
 import {
   Navbar,
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  UncontrolledPopover,
+  PopoverHeader,
+  PopoverBody,
+  Button,
 } from 'reactstrap';
+import { User } from '../../types/user';
 
-function Header() {
+interface Props {
+  user: User;
+}
+
+function Header(props: Props) {
+  const { user } = props;
   return (
     <Navbar expand="md" light>
       <Nav className="ms-auto" navbar>
-        <NavItem>
-          <NavLink disabled href="#">
-            Inactive Link
-          </NavLink>
-        </NavItem>
-        <UncontrolledDropdown setActiveFromChild>
-          <DropdownToggle caret className="nav-link" tag="a">
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem active href="#" tag="a">
-              Link
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
+        <button id="popover1" type="button">
+          {user.firstName} {user.lastName}
+        </button>
+
+        <UncontrolledPopover placement="bottom" target="popover1" trigger="focus">
+          <PopoverBody>Logout</PopoverBody>
+        </UncontrolledPopover>
       </Nav>
     </Navbar>
   );
