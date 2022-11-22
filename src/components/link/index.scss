@@ -1,5 +1,6 @@
 .custom-link {
   color: var(--cs-bg-button);
+  text-decoration: none;
   &:hover {
     filter: brightness(1.4);
     color: var(--cs-bg-button);

@@ -101,6 +101,7 @@ function LoginForm() {
         type={'password'}
         onChange={onChange}
         isRequired
+        isForgotPassword
       />
       <Checkbox
         htmlFor="is-remember-login"
