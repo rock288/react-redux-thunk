@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BASE_URL } from '../config';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { getToken, getExpiresToken } from './indexDB';
+import { getToken } from './indexDB';
+import jwt_decode from 'jwt-decode';
 import history from './history';
 
 const service = axios.create({
@@ -14,10 +15,11 @@ service.interceptors.request.use(
     try {
       const token = getToken();
       if (token) {
+        const decoded: { exp: number } = jwt_decode(token);
+        console.log(decoded);
         const nowInSecs = Date.now();
-        const expires = getExpiresToken();
-        const timeExpire = new Date(expires).getTime();
-        if (timeExpire < nowInSecs) {
+        const timeExpire = decoded.exp;
+        if (nowInSecs < timeExpire) {
           history.replace('/login'); // <-- navigate
         }
         config.headers['Content-type'] = 'application/json';

@@ -29,7 +29,7 @@ function TextField(props: Props) {
         name={name}
         onChange={onChange}
       />
-      {message ?? <FormFeedback>{message}</FormFeedback>}
+      <FormFeedback className={`d-block error-message`}>{message}</FormFeedback>
     </FormGroup>
   );
 }

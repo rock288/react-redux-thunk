@@ -26,6 +26,11 @@ function SignUpForm() {
     setData({ ...data, [name]: value });
   };
 
+  const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = e.target;
+    setData({ ...data, isRemember: checked });
+  };
+
   return (
     <section className="form-login">
       <h4 className="title pb-4">Adventure starts here</h4>
@@ -68,12 +73,14 @@ function SignUpForm() {
         isRequired
       />
       <Checkbox
+        htmlFor="is-accept-policy"
         label={
           <p>
             i agree to <Link to="#">privacy policy & terms</Link>
           </p>
         }
         value={data.isRemember}
+        onChange={onChangeCheckbox}
       />
       <Button
         onClick={() => {

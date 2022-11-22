@@ -1,51 +1,32 @@
-// use local Storage
+import { User } from '../types/user';
 
-const set = (key: string, value: string) => {
+// use local Storage
+const setItem = (key: string, value: User) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-const get = (key: string) => {
+const getItem = (key: string) => {
   const results = localStorage.getItem(key);
 
   if (!results) {
     return null;
   }
 
-  return JSON.parse(results);
+  return JSON.parse(results) as User;
 };
 
 const removeItem = (key: string) => {
   return localStorage.removeItem(key);
 };
 
-export const getToken = () => {
-  const tokens = get('tokens');
+const getToken = () => {
+  const user = getItem('user');
 
-  if (!tokens) {
+  if (!user) {
     return undefined;
   }
 
-  return tokens.access.token;
+  return user?.token;
 };
 
-export const getRefreshToken = () => {
-  const tokens = get('tokens');
-
-  if (!tokens) {
-    return undefined;
-  }
-
-  return tokens.refresh.token;
-};
-
-export const getExpiresToken = () => {
-  const tokens = get('tokens');
-
-  if (!tokens) {
-    return undefined;
-  }
-
-  return tokens.access.expires;
-};
-
-export default { set, get, removeItem };
+export { setItem, getItem, removeItem, getToken };

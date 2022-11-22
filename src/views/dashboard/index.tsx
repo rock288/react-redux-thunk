@@ -2,13 +2,17 @@ import { Header, Footer } from '../../components';
 import { Row, Col } from 'reactstrap';
 import Body from './body';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { User } from '../../types/user';
+// import { useNavigate } from 'react-router-dom';
 
 function DashBoard() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const user: User = useSelector((state: { user: User }) => state.user);
 
   useEffect(() => {
-    navigate('/login');
+    console.log({ user });
+    // navigate('/login');
   }, []);
 
   return (

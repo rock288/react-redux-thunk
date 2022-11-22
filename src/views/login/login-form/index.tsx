@@ -1,6 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../../api/auth';
-import { TextField, Checkbox, Button, Link, SocialMedia } from '../../../components';
+import { Button, Checkbox, Link, SocialMedia, TextField } from '../../../components';
+import { setUser } from '../../../store/user/userReducer';
+import { User } from '../../../types/user';
+import { checkFormLogin } from '../../../utils/validation';
+import { setItem } from '../../../utils/indexDB';
 import './index.scss';
 
 const values = {
@@ -16,21 +24,58 @@ const messages = {
 
 function LoginForm() {
   const [data, setData] = useState(values);
-  const [errors] = useState(messages);
+  const [errors, setErrors] = useState(messages);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const onLogin = async () => {
-    console.log('Login');
-    const res = await login({
-      email: 'test1@gmail.com',
-      password: '12345678',
-    });
+  const onChangeCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked } = e.target;
+    setData({ ...data, isRemember: checked });
+  };
 
-    console.log({ res });
+  const isEmptyErrors = ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    if (isEmpty(email) && isEmpty(password)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const isValid = () => {
+    const messages = checkFormLogin(data);
+    setErrors(messages);
+    return isEmptyErrors(messages);
+  };
+
+  const onLogin = async () => {
+    if (isValid()) {
+      try {
+        const user: User = (await login({
+          email: data.email,
+          password: data.password,
+        })) as any;
+        console.log(data);
+        if (data.isRemember) {
+          setItem('user', user);
+        }
+        dispatch(setUser(user));
+        navigate('/');
+      } catch (_) {
+        alert('login failed');
+      }
+    }
   };
 
   return (
@@ -58,7 +103,12 @@ function LoginForm() {
         onChange={onChange}
         isRequired
       />
-      <Checkbox label="Remember me" value={data.isRemember} />
+      <Checkbox
+        htmlFor="is-remember-login"
+        label="Remember me"
+        value={data.isRemember}
+        onChange={onChangeCheckbox}
+      />
       <Button onClick={onLogin} text="Login" isFullWidth />
       <p className="mt-4 text-center">
         New on our platform? <Link to={'/sign-up'}>Create an account</Link>
