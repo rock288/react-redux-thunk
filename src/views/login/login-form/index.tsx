@@ -66,10 +66,12 @@ function LoginForm() {
           email: data.email.trim(),
           password: data.password.trim(),
         })) as any;
-        if (data.isRemember) {
-          setItem('user', user);
-        }
         dispatch(setUser(user));
+        // chua ro~ de`
+        // if (data.isRemember) {
+        //   setItem('user', user);
+        // }
+        setItem('user', user);
         navigate('/');
       } catch (_) {
         alert('login failed');

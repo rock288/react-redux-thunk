@@ -12,16 +12,20 @@ import Header from './header';
 
 function DashBoard() {
   const navigate = useNavigate();
-  const user: User = useSelector((state: { user: User }) => state.user);
+  const user: User | null = useSelector(
+    (state: { user: User | null }) => state.user
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const user = getItem('user');
-    if (user) {
-      dispatch(setUser(user));
-    } else {
-      navigate('/login');
+    if (!user) {
+      const userLocal = getItem('user');
+      if (userLocal) {
+        dispatch(setUser(userLocal));
+      } else {
+        navigate('/login');
+      }
     }
   }, []);
   return (

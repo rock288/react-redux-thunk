@@ -16,11 +16,10 @@ service.interceptors.request.use(
       const token = getToken();
       if (token) {
         const decoded: { exp: number } = jwt_decode(token);
-        console.log(decoded);
         const nowInSecs = Date.now();
         const timeExpire = decoded.exp;
         if (nowInSecs < timeExpire) {
-          history.replace('/login'); // <-- navigate
+          history.replace('/login');
         }
         config.headers['Content-type'] = 'application/json';
         config.headers.Authorization = `Bearer ${token}`;

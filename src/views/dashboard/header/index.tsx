@@ -5,21 +5,24 @@ import avatarImage from '../../../assets/images/avatar.svg';
 import logoutIcon from '../../../assets/images/logout.svg';
 import { logout } from '../../../api/auth';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { userLogout } from '../../../store/user/userReducer';
 import './index.scss';
 
 interface Props {
-  user: User;
+  user: User | null;
 }
 
 function Header(props: Props) {
   const { user } = props;
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onLogout = async () => {
     try {
       await logout();
+      dispatch(userLogout());
       navigate('/login');
     } catch (_) {
       alert('Logout failed');
@@ -36,7 +39,7 @@ function Header(props: Props) {
         >
           <div className="d-flex flex-column align-items-end">
             <span className="user-name">
-              {user.firstName} {user.lastName}
+              {user?.firstName} {user?.lastName}
             </span>
             <span className="user-active">Available</span>
           </div>
