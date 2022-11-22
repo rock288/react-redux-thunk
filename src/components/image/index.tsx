@@ -6,16 +6,17 @@ interface Props {
   imgClass?: string;
   isIcon?: boolean;
   isBanner?: boolean;
+  isAvatar?: boolean;
 }
 
 function Image(props: Props) {
-  const { isIcon, isBanner, imgClass, ...rest } = props;
+  const { isIcon, isBanner, isAvatar, imgClass, ...rest } = props;
   return (
     <img
       {...rest}
       className={`${imgClass ?? ''} ${isBanner ? 'img-banner' : ''} ${
         isIcon ? 'img-icon' : ''
-      }`}
+      } ${isAvatar ? 'img-avatar' : ''}`}
     />
   );
 }

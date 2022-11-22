@@ -19,9 +19,8 @@ export const signUp = (data: {
     data,
   });
 
-export const logout = (data: { refreshToken: string }) =>
+export const logout = () =>
   request({
     url: '/api/auth/logout',
     method: 'post',
-    data,
   });

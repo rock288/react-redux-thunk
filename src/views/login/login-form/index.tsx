@@ -79,7 +79,7 @@ function LoginForm() {
 
   return (
     <section className="form-login">
-      <h4 className="title pb-4">Welcome to Entrance Test Interview! 👋🏻</h4>
+      <h4 className="title pb-4">Welcome to ReactJS Test Interview! 👋🏻</h4>
       <p className="fw-bold pb-4">
         Please sign-in to your account and start the adventure
       </p>

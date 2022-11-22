@@ -1,3 +1,13 @@
 .header-top {
   height: 62px;
+
+  .user-info {
+    border: none;
+    background-color: white;
+    gap: 10px;
+  }
+  .user-active {
+    color: #b9b9c3;
+    font-size: 12px;
+  }
 }
