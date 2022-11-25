@@ -13,6 +13,7 @@ function CustomButton(props: Props) {
 
   return (
     <button
+      data-testid="btn"
       type="button"
       className={`btn-custom btn text-center mt-4 ${isFullWidth ? 'w-100' : ''}`}
       onClick={onClick}

@@ -7,7 +7,10 @@ interface Props {
 
 function LoginBanner(props: Props) {
   return (
-    <section className="h-100 d-flex justify-content-center align-items-center">
+    <section
+      data-testid="banner"
+      className="h-100 d-flex justify-content-center align-items-center"
+    >
       <Image imgClass="w-75" {...props} isBanner />
     </section>
   );

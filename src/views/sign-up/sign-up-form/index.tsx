@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
